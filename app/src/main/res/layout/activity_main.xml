@@ -63,6 +63,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:onClick="showStimulateVideo"
-        android:text="显示广告" />
+        android:text="签到" />
 
 </LinearLayout>
