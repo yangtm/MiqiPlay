@@ -9,11 +9,13 @@
     android:padding="20dp"
     tools:context=".MainActivity">
 
+
     <!--  用户Id  -->
     <TextView
         android:id="@+id/tv_user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="left"
         android:layout_marginBottom="10dp"
         android:text="用户Id：" />
 
@@ -37,9 +39,9 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="@color/black"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"></View>
+            android:layout_marginRight="20dp"
+            android:background="@color/black"></View>
 
 
         <!--  显示最后一次看广告时间  -->
@@ -64,5 +66,14 @@
         android:layout_marginTop="20dp"
         android:onClick="showStimulateVideo"
         android:text="签到" />
+
+
+    <RelativeLayout
+        android:id="@+id/banner_ad_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:gravity="center" />
 
 </LinearLayout>

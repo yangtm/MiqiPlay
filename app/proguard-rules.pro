@@ -154,3 +154,113 @@
 -keep class com.bytedance.sdk.** { *; }
 
 -ignorewarnings
+
+# 不优化输入的类文件
+-dontoptimize
+#忽略警告
+-ignorewarnings
+
+# ToBid
+-dontwarn com.sigmob.**
+-keep class com.sigmob.**{ *;}
+-keep interface com.sigmob.**{ *;}
+
+-dontwarn com.czhj.**
+-keep class com.czhj.**{ *;}
+-keep interface com.czhj.**{ *;}
+-keep class com.tan.**{ *;}
+
+-dontwarn com.windmill.**
+-keep class com.windmill.**.**{*;}
+-keep interface com.windmill.**{ *;}
+
+# miitmdid
+-dontwarn com.bun.**
+-keep class com.bun.** {*;}
+-keep class a.**{*;}
+-keep class XI.CA.XI.**{*;}
+-keep class XI.K0.XI.**{*;}
+-keep class XI.XI.K0.**{*;}
+-keep class XI.vs.K0.**{*;}
+-keep class XI.xo.XI.XI.**{*;}
+-keep class com.asus.msa.SupplementaryDID.**{*;}
+-keep class com.asus.msa.sdid.**{*;}
+-keep class com.huawei.hms.ads.identifier.**{*;}
+-keep class com.samsung.android.deviceidservice.**{*;}
+-keep class com.zui.opendeviceidlibrary.**{*;}
+-keep class org.json.**{*;}
+
+-ignorewarnings
+-dontwarn com.baidu.mobads.sdk.api.**
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keep class com.baidu.mobads.** { *; }
+-keep class com.style.widget.** {*;}
+-keep class com.component.** {*;}
+-keep class com.baidu.ad.magic.flute.** {*;}
+-keep class com.baidu.mobstat.forbes.** {*;}
+
+# TapTap混淆
+-dontwarn com.tapsdk.**
+-dontwarn com.tapadn.**
+-keep class com.tapsdk.** {*; }
+-keep class com.tapadn.** {*; }
+
+# 1.0.25之后
+
+# sdk
+-keep class com.bun.miitmdid.** { *; }
+-keep interface com.bun.supplier.** { *; }
+
+# asus
+-keep class com.asus.msa.SupplementaryDID.** { *; }
+-keep class com.asus.msa.sdid.** { *; }
+# freeme
+-keep class com.android.creator.** { *; }
+-keep class com.android.msasdk.** { *; }
+# huawei
+-keep class com.huawei.hms.ads.** { *; }
+-keep interface com.huawei.hms.ads.** {*; }
+# lenovo
+-keep class com.zui.deviceidservice.** { *; }
+-keep class com.zui.opendeviceidlibrary.** { *; }
+# meizu
+-keep class com.meizu.flyme.openidsdk.** { *; }
+# nubia
+-keep class com.bun.miitmdid.provider.nubia.NubiaIdentityImpl { *; }
+# oppo
+-keep class com.heytap.openid.** { *; }
+# samsung
+-keep class com.samsung.android.deviceidservice.** { *; }
+# vivo
+-keep class com.vivo.identifier.** { *; }
+# xiaomi
+-keep class com.bun.miitmdid.provider.xiaomi.IdentifierManager { *; }
+# zte
+-keep class com.bun.lib.** { *; }
+# coolpad
+-keep class com.coolpad.deviceidsupport.** { *; }
+
+# 1.0.25 之前
+-dontwarn com.bun.**
+-keep class com.bun.** {*;}
+-keep class a.**{*;}
+-keep class XI.CA.XI.**{*;}
+-keep class XI.K0.XI.**{*;}
+-keep class XI.XI.K0.**{*;}
+-keep class XI.vs.K0.**{*;}
+-keep class XI.xo.XI.XI.**{*;}
+-keep class com.asus.msa.SupplementaryDID.**{*;}
+-keep class com.asus.msa.sdid.**{*;}
+-keep class com.huawei.hms.ads.identifier.**{*;}
+-keep class com.samsung.android.deviceidservice.**{*;}
+-keep class com.zui.opendeviceidlibrary.**{*;}
+-keep class org.json.**{*;}
+
