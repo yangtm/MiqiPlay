@@ -62,7 +62,7 @@
     <!-- 加上下列权限可以提高广告的转化率 -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
-
+    <uses-sdk tools:overrideLibrary="com.bun.miitmdid,com.unity3d.ads,com.tapsdk.tapad" />
     <application
         android:name=".CustomApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"

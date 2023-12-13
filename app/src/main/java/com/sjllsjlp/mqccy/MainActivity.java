@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
     //定义一个倒计时timer
     Timer timer = new Timer();
     TimerTask mTimerTask = null;
-
+    String userId = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
         adContainer = findViewById(R.id.banner_ad_container);
         //生成一个数字串作为用户的唯一标识，随机生成保障唯一
         //如果本地Sp中已经有了用户id，就不再生成，直接显示
-        String userId = sp.getString(KEY_USER_ID, null);
+        userId = sp.getString(KEY_USER_ID, null);
         if (userId!= null && userId != "") {
             tv_user_id.setText("用户id：" + sp.getString(KEY_USER_ID, null));
         } else {
@@ -107,8 +107,10 @@ public class MainActivity extends Activity {
             editor.putInt(KEY_VIDEO_COUNT, 0);
             editor.apply();
         }
-        tv_video_count.setText(sp.getInt(KEY_VIDEO_COUNT, 0) + "/20");
+        tv_video_count.setText(sp.getInt(KEY_VIDEO_COUNT, 0) + "/25");
         tv_last_play_time.setText("上次观看视频时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(sp.getLong(KEY_LAST_PLAY_TIME, 0))));
+
+        loadBannerAd();
     }
 
     //定义一个随机生成的用户id的方法，试用随机生成的数字串作为用户的唯一标识
@@ -124,9 +126,9 @@ public class MainActivity extends Activity {
 
     //showStimulateVideo事件
     public void showStimulateVideo(View view) {
-        if(sconds<=0) {
+        if(sconds>=5) {
             //如果超过20次，提示用户不能再观看
-            if (sp.getInt(KEY_VIDEO_COUNT, 0) >= 20) {
+            if (sp.getInt(KEY_VIDEO_COUNT, 0) >= 25) {
                 Toast.makeText(this, "今日观看次数已达上限", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -211,8 +213,9 @@ public class MainActivity extends Activity {
 
     private void loadRewardedAd() {
         Map<String, Object> options = new HashMap<>();
+        options.put("user_id", userId);
         if(windRewardedVideoAd == null) {
-            windRewardedVideoAd = new WMRewardAd(this, new WMRewardAdRequest("7143999323475082", "", options));
+            windRewardedVideoAd = new WMRewardAd(this, new WMRewardAdRequest("7143999323475082", userId, options));
         }
         windRewardedVideoAd.setRewardedAdListener(new WMRewardAdListener() {
             @Override
@@ -305,7 +308,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public int sconds = 0;
+    public int sconds = 5;
     //定义Handler，用于处理线程间的通信，更新页面中的次数和时间
     private Handler handler = new Handler(){
         @Override
@@ -317,16 +320,16 @@ public class MainActivity extends Activity {
                     int videoCount = sp.getInt(KEY_VIDEO_COUNT, 0);
                     long lastPlayTime = sp.getLong(KEY_LAST_PLAY_TIME, 0);
                     //更新页面中的次数和时间
-                    tv_video_count.setText(videoCount + "/20");
+                    tv_video_count.setText(videoCount + "/25");
                     tv_last_play_time.setText("上次观看视频时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(lastPlayTime)));
                     break;
                 case  UPDATE_TEXT:
-                    sconds++;
+                    sconds--;
                     btn_stimulate_video.setEnabled(false);
                     btn_stimulate_video.setText(sconds + "s后签到");
-                    if(sconds >= 5) {
+                    if(sconds <=0) {
                         mTimerTask.cancel();
-                        sconds = 0;
+                        sconds = 5;
                         btn_stimulate_video.setEnabled(true);
                         btn_stimulate_video.setText("签到");
                     }
@@ -341,7 +344,6 @@ public class MainActivity extends Activity {
     }
 
     private void loadBannerAd() {
-        Map<String, Object> options = new HashMap<>();
         mBannerView = new WMBannerView(this);
         mBannerView.setAdListener(new WMBannerAdListener() {
             @Override
@@ -395,13 +397,14 @@ public class MainActivity extends Activity {
         });
 
         mBannerView.setAutoAnimation(true);
-        mBannerView.loadAd(new WMBannerAdRequest("1339711577826436","", options));
+        Map<String, Object> options = new HashMap<>();
+        options.put("user_id", userId);
+        mBannerView.loadAd(new WMBannerAdRequest("1339711577826436",userId, options));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        loadBannerAd();
         loadRewardedAd();
     }
 
