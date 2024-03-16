@@ -107,10 +107,10 @@ public class MainActivity extends Activity {
             editor.putInt(KEY_VIDEO_COUNT, 0);
             editor.apply();
         }
-        tv_video_count.setText(sp.getInt(KEY_VIDEO_COUNT, 0) + "/25");
+        tv_video_count.setText(sp.getInt(KEY_VIDEO_COUNT, 0) + "/20");
         tv_last_play_time.setText("上次观看视频时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(sp.getLong(KEY_LAST_PLAY_TIME, 0))));
 
-        loadBannerAd();
+        //loadBannerAd();
     }
 
     //定义一个随机生成的用户id的方法，试用随机生成的数字串作为用户的唯一标识
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
     public void showStimulateVideo(View view) {
         if(sconds>=5) {
             //如果超过20次，提示用户不能再观看
-            if (sp.getInt(KEY_VIDEO_COUNT, 0) >= 25) {
+            if (sp.getInt(KEY_VIDEO_COUNT, 0) >= 20) {
                 Toast.makeText(this, "今日观看次数已达上限", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -215,7 +215,7 @@ public class MainActivity extends Activity {
         Map<String, Object> options = new HashMap<>();
         options.put("user_id", userId);
         if(windRewardedVideoAd == null) {
-            windRewardedVideoAd = new WMRewardAd(this, new WMRewardAdRequest("7143999323475082", userId, options));
+            windRewardedVideoAd = new WMRewardAd(this, new WMRewardAdRequest("5985556265378299", userId, options));
         }
         windRewardedVideoAd.setRewardedAdListener(new WMRewardAdListener() {
             @Override
@@ -320,7 +320,7 @@ public class MainActivity extends Activity {
                     int videoCount = sp.getInt(KEY_VIDEO_COUNT, 0);
                     long lastPlayTime = sp.getLong(KEY_LAST_PLAY_TIME, 0);
                     //更新页面中的次数和时间
-                    tv_video_count.setText(videoCount + "/25");
+                    tv_video_count.setText(videoCount + "/20");
                     tv_last_play_time.setText("上次观看视频时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(lastPlayTime)));
                     break;
                 case  UPDATE_TEXT:

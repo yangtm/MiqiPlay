@@ -7,11 +7,11 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.sjllsjlp.mqccy"
+        applicationId "com.sjllsjlp.wmccl"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -50,6 +50,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 //    implementation 'com.qq.e.union:union:+' // 普通版本
 
+
+    implementation files('libs/oaid_sdk_2.3.0.aar')
     //AndroidX
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // AndroidX依赖和上面Supprot库依赖，二选一
@@ -67,13 +69,11 @@ dependencies {
     implementation fileTree(include: ["*.jar", "*.aar"], dir: 'libs/AdNetworks/baidu')
 
     //TapTap
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs/AdNetworks/taptap')
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs/AdNetworks/taptap')
     implementation "com.github.bumptech.glide:glide:4.9.0"
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.0.1'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation "com.android.support:support-annotations:28.0.0"
-
-    implementation files('libs/oaid_sdk_2.3.0.aar')
 
 }

@@ -55,7 +55,7 @@ public class CustomApplication extends Application {
 //        ads.setInitNetworkConfig(builder.build());
 
         //ads.startWithAppId(this, "32737");
-        ads.startWithAppId(this, "32737", new WMAdConfig.Builder().customController(new WMCustomController() {
+        ads.startWithAppId(this, "34746", new WMAdConfig.Builder().customController(new WMCustomController() {
             /**
              * 是否允许SDK主动使用地理位置信息
              *
